@@ -1,6 +1,5 @@
 package io.swingui;
 
-import io.db.DbGateway;
 import io.domain.Item;
 import io.domain.Store;
 import io.ui.ItemPresenter;
@@ -8,9 +7,6 @@ import io.ui.StorePresenter;
 import io.ui.ViewFactory;
 
 public class WindowFactory implements ViewFactory {
-    private final DbGateway db;
-
-    public WindowFactory(DbGateway db) { this.db = db; }
 
     public void openEditItemView(Item item) {
         ItemWindow view = new ItemWindow();
