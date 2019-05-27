@@ -14,7 +14,7 @@ public class Store {
     public void addObserver(Observer observer) { observers.add(observer); }
     public void removeObserver(Observer observer) { observers.remove(observer); }
 
-    private List<Item> items = new ArrayList<>();
+    protected List<Item> items = new ArrayList<>();
 
     public List<Item> items() { return Collections.unmodifiableList(items); }
 
