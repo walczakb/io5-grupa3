@@ -1,6 +1,5 @@
 package io.ui;
 
-import io.db.DbGateway;
 import io.domain.Item;
 import io.domain.Store;
 

@@ -11,6 +11,7 @@ public class Store {
 
     private List<Observer> observers = new ArrayList<>();
 
+
     protected Item createItem (String name, int count, int price) {
         return new Item(name, count, price);
     }
@@ -18,7 +19,15 @@ public class Store {
     public void addObserver(Observer observer) { observers.add(observer); }
     public void removeObserver(Observer observer) { observers.remove(observer); }
 
-    private List<Item> items = new ArrayList<>();
+    private List<Item> items;
+
+    public Store (List<Item> initItems) {
+        items = initItems;
+    }
+
+    public Store () {
+        items = new ArrayList<>();
+    }
 
     public List<Item> items() { return Collections.unmodifiableList(items); }
 

@@ -1,15 +1,17 @@
 package io.db;
 
+import io.domain.Item;
 import io.domain.Store;
+
+import java.util.List;
 
 class StoreProxy extends Store {
 
     private DbEngine engine;
-    private boolean dbSynced;
 
-    public StoreProxy(DbEngine engine) {
+    public StoreProxy(List<Item> init, DbEngine engine) {
+        super(init);
         this.engine = engine;
-        dbSynced = false;
     }
 
     protected ItemProxy createItem (String name, int count, int price) {

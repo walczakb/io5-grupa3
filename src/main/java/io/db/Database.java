@@ -3,7 +3,9 @@ package io.db;
 import io.domain.Item;
 import io.domain.Store;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Database implements DbGateway {
@@ -12,10 +14,11 @@ public class Database implements DbGateway {
     public Database(DbEngine engine) { this.engine = engine; }
 
     public Store loadStore() {
-        StoreProxy store = new StoreProxy(engine);
+        List<Item> init = new ArrayList<>();
         engine.readItems((id, name, count, price) -> {
-            Item item = store.addItem(name, count, price);
+            init.add(new ItemProxy(name, count, price, id, engine));
         });
+        StoreProxy store = new StoreProxy(init, engine);
         return store;
     }
 }
