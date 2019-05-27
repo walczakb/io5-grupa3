@@ -18,8 +18,15 @@ public class Store {
 
     public List<Item> items() { return Collections.unmodifiableList(items); }
 
-    public void addItem(Item item) {
+    //public void addItem(Item item) {
+    //    items.add(item);
+    //    for (Observer observer : observers) observer.notifyAdd(item);
+    //}
+
+    public Item addItem(String name, int count, int price) {
+        Item item = new Item(name, count, price);
         items.add(item);
         for (Observer observer : observers) observer.notifyAdd(item);
+        return item;
     }
 }
