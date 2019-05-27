@@ -11,6 +11,10 @@ public class Store {
 
     private List<Observer> observers = new ArrayList<>();
 
+    protected Item createItem (String name, int count, int price) {
+        return new Item(name, count, price);
+    }
+
     public void addObserver(Observer observer) { observers.add(observer); }
     public void removeObserver(Observer observer) { observers.remove(observer); }
 
@@ -18,8 +22,11 @@ public class Store {
 
     public List<Item> items() { return Collections.unmodifiableList(items); }
 
-    public void addItem(Item item) {
+    public Item addItem(String name, int count, int price) {
+        Item item = createItem(name, count, price);
         items.add(item);
         for (Observer observer : observers) observer.notifyAdd(item);
+
+        return item;
     }
 }

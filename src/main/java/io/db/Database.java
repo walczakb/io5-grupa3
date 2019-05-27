@@ -16,8 +16,7 @@ public class Database implements DbGateway {
         Store store = new Store();
         ids = new HashMap<>();
         engine.readItems((id, name, count, price) -> {
-            Item item = new Item(name, count, price);
-            store.addItem(item);
+            Item item = store.addItem(name, count, price);
             ids.put(item, id);
         });
         return store;
