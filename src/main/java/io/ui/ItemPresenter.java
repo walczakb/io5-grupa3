@@ -26,9 +26,7 @@ public class ItemPresenter {
 
     public void initializeAdd(Store store, DbGateway db) {
         confirmAction = (name, count, price) -> {
-            Item item = new Item(name, count, price);
-            store.addItem(item);
-            db.addItem(item);
+            db.addItem(store.addItem(name, count, price));
         };
         view.open("", "", "");
     }
