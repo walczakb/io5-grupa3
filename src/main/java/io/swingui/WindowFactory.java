@@ -8,22 +8,21 @@ import io.ui.StorePresenter;
 import io.ui.ViewFactory;
 
 public class WindowFactory implements ViewFactory {
-    private final DbGateway db;
 
-    public WindowFactory(DbGateway db) { this.db = db; }
+    public WindowFactory() { }
 
     public void openEditItemView(Item item) {
         ItemWindow view = new ItemWindow();
         ItemPresenter presenter = new ItemPresenter(view);
         view.initialize(presenter);
-        presenter.initializeEdit(item, db);
+        presenter.initializeEdit(item);
     }
 
     public void openAddItemView(Store store) {
         ItemWindow view = new ItemWindow();
         ItemPresenter presenter = new ItemPresenter(view);
         view.initialize(presenter);
-        presenter.initializeAdd(store, db);
+        presenter.initializeAdd(store);
     }
 
     public void openStoreView(Store store) {
