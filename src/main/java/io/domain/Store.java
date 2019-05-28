@@ -22,7 +22,10 @@ public class Store {
     private List<Item> items;
 
     public Store (List<Item> initItems) {
-        items = initItems;
+        if (initItems != null)
+            items = initItems;
+        else
+            items = new ArrayList<>();
     }
 
     public Store () {
