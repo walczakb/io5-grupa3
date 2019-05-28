@@ -1,6 +1,5 @@
 package io.ui;
 
-import io.db.DbGateway;
 import io.domain.Item;
 import io.domain.Store;
 
@@ -14,21 +13,18 @@ public class ItemPresenter {
 
     public ItemPresenter(ItemView view) { this.view = view; }
 
-    public void initializeEdit(Item item, DbGateway db) {
+    public void initializeEdit(Item item) {
         confirmAction = (name, count, price) -> {
             item.update(name, count, price);
-            db.updateItem(item);
         };
         view.open(item.name(),
                 String.valueOf(item.count()),
                 String.valueOf(item.price()));
     }
 
-    public void initializeAdd(Store store, DbGateway db) {
+    public void initializeAdd(Store store) {
         confirmAction = (name, count, price) -> {
-            Item item = new Item(name, count, price);
-            store.addItem(item);
-            db.addItem(item);
+            store.addItem(name, count, price);
         };
         view.open("", "", "");
     }

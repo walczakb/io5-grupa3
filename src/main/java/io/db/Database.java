@@ -3,33 +3,22 @@ package io.db;
 import io.domain.Item;
 import io.domain.Store;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Database implements DbGateway {
     private final DbEngine engine;
-    private Map<Item, Integer> ids;
 
     public Database(DbEngine engine) { this.engine = engine; }
 
     public Store loadStore() {
-        Store store = new Store();
-        ids = new HashMap<>();
+        List<Item> init = new ArrayList<>();
         engine.readItems((id, name, count, price) -> {
-            Item item = new Item(name, count, price);
-            store.addItem(item);
-            ids.put(item, id);
+            init.add(new ItemProxy(name, count, price, id, engine));
         });
+        StoreProxy store = new StoreProxy(init, engine);
         return store;
-    }
-
-    public void addItem(Item item) {
-        int id = engine.insertItem(item.name(), item.count(), item.price());
-        ids.put(item, id);
-    }
-
-    public void updateItem(Item item) {
-        int id = ids.get(item);
-        engine.updateItem(id, item.name(), item.count(), item.price());
     }
 }
