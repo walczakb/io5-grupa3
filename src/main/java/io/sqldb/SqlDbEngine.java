@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 public class SqlDbEngine implements DbEngine {
     private final String url;
     private final String user;
