@@ -9,17 +9,26 @@ public class Store {
         void notifyAdd(Item item);
     }
 
-    private List<Observer> observers = new ArrayList<>();
+    protected List<Observer> observers = new ArrayList<>();
 
     public void addObserver(Observer observer) { observers.add(observer); }
     public void removeObserver(Observer observer) { observers.remove(observer); }
 
-    private List<Item> items = new ArrayList<>();
+    protected List<Item> items = new ArrayList<>();
 
     public List<Item> items() { return Collections.unmodifiableList(items); }
+    public List<Observer> observers() { return Collections.unmodifiableList(observers); }
 
-    public void addItem(Item item) {
+    public Item addItem(String name, int count, int price){
+        Item item = createItem(name, count, price);
         items.add(item);
-        for (Observer observer : observers) observer.notifyAdd(item);
+        for (Observer observer : observers){
+            observer.notifyAdd(item);
+        }
+        return item;
+    }
+
+    protected Item createItem(String name, int count, int price){
+        return new Item(name, count, price);
     }
 }
