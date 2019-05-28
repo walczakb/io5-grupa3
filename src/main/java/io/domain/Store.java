@@ -22,4 +22,14 @@ public class Store {
         items.add(item);
         for (Observer observer : observers) observer.notifyAdd(item);
     }
+
+    public Item addItem(String name, int count, int price) {
+        Item item = createItem(name, count, price);
+        addItem(item);
+        return item;
+    }
+
+    protected Item createItem(String name, int count, int price) {
+        return new Item(name, count, price);
+    }
 }
