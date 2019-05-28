@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 public class SqlDbEngine implements DbEngine {
     private final String url;
+
     private final String user;
     private final String password;
 
