@@ -1,5 +1,7 @@
 package io.domain;
 
+import io.db.Database;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,11 +19,6 @@ public class Store {
     private List<Item> items = new ArrayList<>();
 
     public List<Item> items() { return Collections.unmodifiableList(items); }
-
-    //public void addItem(Item item) {
-    //    items.add(item);
-    //    for (Observer observer : observers) observer.notifyAdd(item);
-    //}
 
     public Item addItem(String name, int count, int price) {
         Item item = new Item(name, count, price);

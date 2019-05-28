@@ -1,5 +1,7 @@
 package io.domain;
 
+import io.db.Database;
+
 import java.util.ArrayList;
 import java.util.List;
 

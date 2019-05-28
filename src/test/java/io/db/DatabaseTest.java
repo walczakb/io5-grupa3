@@ -37,7 +37,7 @@ public class DatabaseTest {
         Database db = new Database(engine);
         Item item = db.loadStore().items().get(0);
         item.update("item2", 200, 2);
-        db.updateItem(item);
+        //db.updateItem(item);
         verify(engine).updateItem(101, "item2", 200, 2);
     }
 
@@ -48,9 +48,9 @@ public class DatabaseTest {
         when(engine.insertItem("item1", 100, 1)).thenReturn(101);
         Database db = new Database(engine);
         db.loadStore();
-        db.addItem(item);
+        //db.addItem(item);
         item.update("item2", 200, 2);
-        db.updateItem(item);
+        //db.updateItem(item);
         verify(engine).updateItem(101, "item2", 200, 2);
     }
 }

@@ -15,7 +15,7 @@ public class ItemPresenterTest {
         Item item = new Item("item", 100, 1);
         ItemView view = mock(ItemView.class);
         ItemPresenter presenter = new ItemPresenter(view);
-        presenter.initializeEdit(item, null);
+        presenter.initializeEdit(item);
         verify(view).open("item", "100", "1");
     }
 
@@ -23,7 +23,7 @@ public class ItemPresenterTest {
     public void testInitializeAdd() {
         ItemView view = mock(ItemView.class);
         ItemPresenter presenter = new ItemPresenter(view);
-        presenter.initializeAdd(null, null);
+        presenter.initializeAdd(null);
         verify(view).open("", "", "");
     }
 
@@ -36,7 +36,7 @@ public class ItemPresenterTest {
         when(view.getPrice()).thenReturn("2");
         ItemPresenter presenter = new ItemPresenter(view);
         DbGateway db = mock(DbGateway.class);
-        presenter.initializeEdit(item, db);
+        presenter.initializeEdit(item);
         presenter.confirm();
         assertThat(item).hasData("item2", 200, 2);
         verify(db).updateItem(item);
@@ -51,7 +51,7 @@ public class ItemPresenterTest {
         ItemPresenter presenter = new ItemPresenter(view);
         Store store = new Store();
         DbGateway db = mock(DbGateway.class);
-        presenter.initializeAdd(store, db);
+        presenter.initializeAdd(store);
         presenter.confirm();
         assertThat(store.items()).hasSize(1);
         Item item = store.items().get(0);
