@@ -13,7 +13,12 @@ repositories {
 
 dependencies {
     compile group: 'org.postgresql', name: 'postgresql', version: '42.+'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.+'
-    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.+'
-    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.+'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.+'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.+'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.+'
+    testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.+'
+}
+
+test {
+    useJUnitPlatform()
 }
