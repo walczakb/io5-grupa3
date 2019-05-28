@@ -14,22 +14,15 @@ public class ItemPresenter {
 
     public ItemPresenter(ItemView view) { this.view = view; }
 
-    public void initializeEdit(Item item, DbGateway db) {
-        confirmAction = (name, count, price) -> {
-            item.update(name, count, price);
-            db.updateItem(item);
-        };
+    public void initializeEdit(Item item) {
+        confirmAction = item::update;
         view.open(item.name(),
                 String.valueOf(item.count()),
                 String.valueOf(item.price()));
     }
 
-    public void initializeAdd(Store store, DbGateway db) {
-        confirmAction = (name, count, price) -> {
-            Item item = new Item(name, count, price);
-            store.addItem(item);
-            db.addItem(item);
-        };
+    public void initializeAdd(Store store) {
+        confirmAction = (name, count, price) -> store.addItem(name, count, price);
         view.open("", "", "");
     }
 
